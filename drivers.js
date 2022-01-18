@@ -1,4 +1,5 @@
 ﻿// ViewModel KnockOut
+//Teste
 var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
