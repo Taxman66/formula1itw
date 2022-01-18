@@ -25,7 +25,9 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="drivers.html">Drivers</a></li>
-                    <li class="nav-item"><a class="nav-link" href="constructors.html">Constructors</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="constructors.html">Constructors</a></li>
+                    <li class="nav-item"><a class="nav-link" aria-current="page" href="circuits.html">Circuits</a></li>
+                    <li class="nav-item"><a class="nav-link" href="races.html">Races</a></li>
                 </ul>
             </div>
         </div>
@@ -74,7 +76,7 @@
             </tr>
             <tr>
                 <td colspan="2" class="small" data-bind="foreach: Races">
-                    <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-dot-circle-o"></i> <a class="text-muted text-decoration-none" data-bind="text: Name + ' ('+Year+')', attr: { href: './raceDetails?id=' + RaceId }"></a> (<span data-bind="text: RaceId"></span>)</div>
+                    <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-dot-circle-o"></i> <a class="text-muted text-decoration-none" data-bind="text: Name + ' ('+Year+')', attr: { href: './raceDetails.html?id=' + RaceId }"></a> (<span data-bind="text: RaceId"></span>)</div>
                 </td>
             </tr>
         </table>
