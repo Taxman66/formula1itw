@@ -134,3 +134,15 @@ $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());
 });
+
+/*
+function shadow(){
+    document.getElementsByClassName("card")[i].classList.remove('shadow-sm');
+    document.getElementsByClassName("card")[i].classList.add('shadow-lg');
+
+}
+function shadow1(){
+    document.getElementsByClassName("card").classList.remove('shadow-lg');
+    document.getElementsByClassName("card").classList.add('shadow-sm');
+
+}*/

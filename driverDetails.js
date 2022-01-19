@@ -29,7 +29,7 @@ var vm = function () {
             if (data.ImageUrl != null) {
                 self.ImageUrl(data.ImageUrl); 
             } else {
-                self.ImageUrl("https://i.pinimg.com/474x/9b/47/a0/9b47a023caf29f113237d61170f34ad9.jpg")
+                self.ImageUrl("https://www.shareicon.net/data/512x512/2016/06/27/787157_people_512x512.png")
             };
             
             self.Name(data.Name);
