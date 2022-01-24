@@ -23,3 +23,20 @@
         background-color: #e6e6e6;
         border-color: #adadad;
     }
+
+.card2:hover{
+    background-color: rgb(199, 39, 39);
+    color: #f8f9fa ;
+    transform: translate(0,-2%);
+}
+.title{
+    color: rgb(255, 0, 0);
+    font-size: 45px;
+    float: left;
+    text-shadow: 2px 2px 3px rgb(161, 161, 161);
+    font-family: 'Ubuntu';
+}
+
+.card1:hover{
+    transform: translate(0,-5%);
+}
