@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark  fixed-top" style="background-color: rgb(212, 0, 42);">
@@ -42,34 +43,350 @@
         </div>
         <div class="row small">
         </div>
-        <div class="row align-items-center justify-content-center" style="padding: 10px; ">        
-            <table class="table table-striped table-sm small">
-                    <thead class="bg-dark text-light">
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Country</th>
-                            <th scope="col" class="text-right"></th>
-                        </tr>
-                    </thead>
-                    <tbody data-bind="foreach: valores">
-                        <tr>
-                            <td class="align-middle" data-bind="text:Points"></td>
-                            <td class="align-middle" data-bind="text:Year"></td>
-                            <td class="align-middle" data-bind="text:DriverName"></td>
-                            <td class="text-end">
-                                <a class="btn btn-default btn-light btn-sm"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>
-                                <button class="btn btn-default btn-sm"><i class="fa fa-heart-o" title="Selecione para adicionar aos favoritos"></i></button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
+        <div class="row d-flex align-items-center justify-content-center " style="padding: 10px; ">        
+            <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+                <li class="nav-item cor" role="presentation">
+                  <button class="nav-link cor active" id="years1" data-bs-toggle="pill" data-bs-target="#fifties" type="button" role="tab" aria-controls="fifties" aria-selected="true">1950 - 1960</button>
+                </li>
+                <li class="nav-item cor" role="presentation">
+                  <button class="nav-link cor" id="years2" data-bs-toggle="pill" data-bs-target="#sixties" type="button" role="tab" aria-controls="sixties" aria-selected="false">1960 - 1970</button>
+                </li>
+                <li class="nav-item cor" role="presentation">
+                  <button class="nav-link cor" id="years3" data-bs-toggle="pill" data-bs-target="#seventies" type="button" role="tab" aria-controls="seventies" aria-selected="false">1970 - 1980</button>
+                </li>
+                <li class="nav-item cor" role="presentation">
+                  <button class="nav-link cor" id="years4" data-bs-toggle="pill" data-bs-target="#eighties" type="button" role="tab" aria-controls="eighties" aria-selected="false">1980 - 1990</button>
+                </li>
+                <li class="nav-item cor" role="presentation">
+                  <button class="nav-link cor" id="years5" data-bs-toggle="pill" data-bs-target="#nineties" type="button" role="tab" aria-controls="nineties" aria-selected="false">1990 - 2000</button>
+                </li>
+                <li class="nav-item cor" role="presentation">
+                  <button class="nav-link cor" id="years6" data-bs-toggle="pill" data-bs-target="#thousands" type="button" role="tab" aria-controls="thousands" aria-selected="false">2000 - 2010</button>
+                </li>
+                <li class="nav-item cor" role="presentation">
+                  <button class="nav-link cor" id="years7" data-bs-toggle="pill" data-bs-target="#tens" type="button" role="tab" aria-controls="tens" aria-selected="false">2010 - 2020</button>
+                </li>
+                <li class="nav-item cor" role="presentation">
+                  <button class="nav-link cor" id="years8" data-bs-toggle="pill" data-bs-target="#twenties" type="button" role="tab" aria-controls="twenties" aria-selected="false">2020 - 2030</button>
+                </li>
+            </ul>
+              <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="fifties" role="tabpanel" aria-labelledby="years1">
+                    <div class="row align-items-center justify-content-center" data-bind="foreach: valores.slice(0,10)" style="padding: 10px; ">
+                    <!-- ko if:ImageUrl != null -->
+                    <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                        <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                        <img data-bind="attr:{src: ImageUrl}" >
+                        <!--<object data="foobar.png" width=200 height=200>
+                            <img src="test.png" alt="Just testing.">
+                        </object>-->
+                        <div class="container" style="position: relative; margin-top: 10px;">
+                            <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                    
+                            <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                               
+                        </div>
+                        <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                        <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                        <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link la"></a>
+                    </div>
+                    <!-- /ko -->
 
+                    <!-- ko if:ImageUrl == null -->
+                    <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                        <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                        <img src="https://www.shareicon.net/data/512x512/2016/06/27/787157_people_512x512.png">
+                        <!--<object data="foobar.png" width=200 height=200>
+                            <img src="test.png" alt="Just testing.">
+                        </object>-->
+                        <div class="container" style="position: relative; margin-top: 10px;">
+                            <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                            <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                      
+                        </div>
+                        <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                        <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                        <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link"></a>
+                    </div>
+                    <!-- /ko -->
+                    </div>
+                    
+                </div>
+                <div class="tab-pane fade" id="sixties" role="tabpanel" aria-labelledby="years2">
+                    <div class="row align-items-center justify-content-center" data-bind="foreach: valores.slice(10,20)" style="padding: 10px; ">
+                        <!-- ko if:ImageUrl != null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img data-bind="attr:{src: ImageUrl}" >
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                 
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link la"></a>
+                        </div>
+                        <!-- /ko -->
     
-            
+                        <!-- ko if:ImageUrl == null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img src="https://www.shareicon.net/data/512x512/2016/06/27/787157_people_512x512.png">
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                        
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link"></a>
+                        </div>
+                        <!-- /ko -->
+                        </div>
+                </div>
+                <div class="tab-pane fade" id="seventies" role="tabpanel" aria-labelledby="years3">
+                    <div class="row align-items-center justify-content-center" data-bind="foreach: valores.slice(20,30)" style="padding: 10px; ">
+                        <!-- ko if:ImageUrl != null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img data-bind="attr:{src: ImageUrl}" >
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                 
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link la"></a>
+                        </div>
+                        <!-- /ko -->
+    
+                        <!-- ko if:ImageUrl == null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img src="https://www.shareicon.net/data/512x512/2016/06/27/787157_people_512x512.png">
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                         
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link"></a>
+                        </div>
+                        <!-- /ko -->
+                        </div>
+                </div>
+                <div class="tab-pane fade" id="eighties" role="tabpanel" aria-labelledby="years4">
+                    <div class="row align-items-center justify-content-center" data-bind="foreach: valores.slice(30,40)" style="padding: 10px; ">
+                        <!-- ko if:ImageUrl != null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img data-bind="attr:{src: ImageUrl}" >
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                  
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link la"></a>
+                        </div>
+                        <!-- /ko -->
+    
+                        <!-- ko if:ImageUrl == null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img src="https://www.shareicon.net/data/512x512/2016/06/27/787157_people_512x512.png">
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                        
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link"></a>
+                        </div>
+                        <!-- /ko -->
+                        </div>
+                </div>
+                <div class="tab-pane fade" id="nineties" role="tabpanel" aria-labelledby="years5">
+                    <div class="row align-items-center justify-content-center" data-bind="foreach: valores.slice(40,50)" style="padding: 10px; ">
+                        <!-- ko if:ImageUrl != null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img data-bind="attr:{src: ImageUrl}" >
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                               
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link la"></a>
+                        </div>
+                        <!-- /ko -->
+    
+                        <!-- ko if:ImageUrl == null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img src="https://www.shareicon.net/data/512x512/2016/06/27/787157_people_512x512.png">
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                         
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link"></a>
+                        </div>
+                        <!-- /ko -->
+                        </div>
+                </div>
+                <div class="tab-pane fade" id="thousands" role="tabpanel" aria-labelledby="years6">
+                    <div class="row align-items-center justify-content-center" data-bind="foreach: valores.slice(50,60)" style="padding: 10px; ">
+                        <!-- ko if:ImageUrl != null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img data-bind="attr:{src: ImageUrl}" >
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                 
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link la"></a>
+                        </div>
+                        <!-- /ko -->
+    
+                        <!-- ko if:ImageUrl == null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img src="https://www.shareicon.net/data/512x512/2016/06/27/787157_people_512x512.png">
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                         
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link"></a>
+                        </div>
+                        <!-- /ko -->
+                        </div>
+                </div>
+                <div class="tab-pane fade" id="tens" role="tabpanel" aria-labelledby="years7">
+                    <div class="row align-items-center justify-content-center" data-bind="foreach: valores.slice(60,70)" style="padding: 10px; ">
+                        <!-- ko if:ImageUrl != null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img data-bind="attr:{src: ImageUrl}" >
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                  
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link la"></a>
+                        </div>
+                        <!-- /ko -->
+    
+                        <!-- ko if:ImageUrl == null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img src="https://www.shareicon.net/data/512x512/2016/06/27/787157_people_512x512.png">
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                         
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link"></a>
+                        </div>
+                        <!-- /ko -->
+                        </div>
+                </div>
+                <div class="tab-pane fade" id="twenties" role="tabpanel" aria-labelledby="years8">
+                    <div class="row align-items-center justify-content-center" data-bind="foreach: valores.slice(70,80)" style="padding: 10px; ">
+                        <!-- ko if:ImageUrl != null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img data-bind="attr:{src: ImageUrl}" >
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                  
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link la"></a>
+                        </div>
+                        <!-- /ko -->
+    
+                        <!-- ko if:ImageUrl == null -->
+                        <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
+                            <h4 data-bind="text:Year" style="padding: 5px;"></h4>
+                            <img src="https://www.shareicon.net/data/512x512/2016/06/27/787157_people_512x512.png">
+                            <!--<object data="foobar.png" width=200 height=200>
+                                <img src="test.png" alt="Just testing.">
+                            </object>-->
+                            <div class="container" style="position: relative; margin-top: 10px;">
+                                <h4 data-bind="text:DriverName" style="font-size: 21px;"></h4>
+                            
+                                <h5 data-bind="text:Points" style="font-size: 16px;"></h5>                                         
+                            </div>
+                            <!--<a style="width: 30px; float: right; position: relative; margin: 10px; margin-bottom: 10px;" class="btn btn-default btn-light btn-sm" data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }"><i class="fa fa-eye" title="Selecione para ver detalhes"></i></a>-->
+                            <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
+                            <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link"></a>
+                        </div>
+                        <!-- /ko -->
+                        </div>
+                </div>
+              </div>
         </div>
+                   
     </div>
     <!-- Modal -->
     
@@ -92,8 +409,7 @@
     <nav class="navbar navbar-light bg-light fixed-bottom">
         <div class="container small">
             <div class="navbar-text">&copy;  Introdução as Tecnologias Web - 2021/22</div>
-            <div class="navbar-text">Made with <i class="fa fa-heart-o text-danger"></i> for U by <a href="mailto:jsp@ua.pt" class="text-decoration-none text-muted">jsp@ua.pt</a>.</div>
-            <div class="navbar-nav">
+            <div class="navbar-text">Made by <a href="mailto:vieira.fontes@ua.pt" class="text-decoration-none text-muted">vieira.fontes@ua.pt</a> and <a href="mailto:miguelcruzeiro@ua.pt" class="text-decoration-none text-muted">miguelcruzeiro@ua.pt</a>.</div>            <div class="navbar-nav">
                 <div class="nav-item text-end"><a href="https://www.ua.pt" class="nav-link">Universidade de Aveiro</a></div>
             </div>
         </div>
