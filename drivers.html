@@ -29,6 +29,8 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="constructors.html">Constructors</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="circuits.html">Circuits</a></li>
                     <li class="nav-item"><a class="nav-link" href="races.html">Races</a></li>
+                    <li class="nav-item"><a class="nav-link" href="champions.html">Champions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="seasons.html">Seasons</a></li>
                 </ul>
             </div>
         </div>
@@ -106,7 +108,7 @@
                 <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link la"></a>
             </div>
             <!-- /ko -->
-
+            <!-- ko if:ImageUrl == null -->
             <div class="card shadow-sm card2" style="margin: 10px; width:250px; height: 390px; border-radius: 5%;">
                 <h4 data-bind="text:DriverId" style="padding: 5px;"></h4>
                 <img src="https://www.shareicon.net/data/512x512/2016/06/27/787157_people_512x512.png">
@@ -122,7 +124,7 @@
                 <!--<button style=" position: absolute; width: 30px; margin-right: 30px;" class="btn btn-default btn-sm"><i class="fa fa-heart-o" data-bind="attr : { 'id': 'favourite_' + DriverId }" title="Selecione para adicionar aos favoritos"></i></button>-->
                 <a data-bind="attr: { href:'./driverDetails.html?id=' + DriverId }" class="stretched-link"></a>
             </div>
-            
+            <!-- /ko -->
         </div>
     </div>
     <!-- Modal -->

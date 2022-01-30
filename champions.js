@@ -77,3 +77,9 @@ $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());
 });
+
+setTimeout(function(){
+    //var load_screen = document.getElementById("myModal");
+    //load_screen.remove(load_screen);
+    $("#myModal").modal('hide');
+  },1500)
