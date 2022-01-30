@@ -3,22 +3,23 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Seasons/Season?year=');
+    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Statistics/Season?year=');
     self.displayName = 'Season Details';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
     self.Year = ko.observable('');
-    self.ImageUrl = ko.observable('');
-    self.Name = ko.observable('');
-    self.Country = ko.observable('');
-    self.Location = ko.observable('');
-    self.Races = ko.observableArray('');
+    self.Races = ko.observable('');
+    self.Countries = ko.observable('');
+    
+    self.Constructors = ko.observable('');
+    self.DriverStandings = ko.observableArray('');
+    self.ConstructorStandings = ko.observableArray('');
     self.Url = ko.observable('');
     self.Alt = ko.observable('');
     self.Lng = ko.observable('');
     self.Lat = ko.observable('');
-    self.Date = ko.observable('');
+    self.Drivers = ko.observable('');
 
     //--- Page Events
     self.activate = function (id) {
@@ -27,16 +28,17 @@ var vm = function () {
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
             self.Year(data.Year);
-            self.ImageUrl(data.ImageUrl);
-            self.Name(data.Name);
-            self.Country(data.Country);
-            self.Location(data.Location);
             self.Races(data.Races);
+            self.Countries(data.Countries);
+            
+            self.Constructors(data.Constructors);
+            self.DriverStandings(data.DriverStandings);
+            self.ConstructorStandings(data.ConstructorStandings);
             self.Url(data.Url);
             self.Alt(data.Alt);
             self.Lng(data.Lng);
             self.Lat(data.Lat);
-            self.Date(data.Date);
+            self.Drivers(data.Drivers);
             hideLoading();
         });
     };

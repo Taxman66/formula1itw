@@ -43,11 +43,31 @@
         
         <table class="table table-sm small">
             <tr class="row">
-                <th colspan="2">Races [<span data-bind="text: Races().length"></span>]</th>
+                <th class="col-md-2">Countries</th>
+                <td class="col-md-10" data-bind="text: Countries"></td>
+            </tr>
+            <tr class="row">
+                <th class="col-md-2">Constructors</th>
+                <td class="col-md-10" data-bind="text: Constructors"></td>
+            </tr>
+            <tr class="row">
+                <th colspan="2">ConstructorStandings</th>
             </tr>
             <tr>
-                <td colspan="2" class="small" data-bind="foreach: Races">
-                    <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-flag-checkered"></i> <a class="text-muted text-decoration-none" data-bind="text: Name + ' ('+Date+')', attr: { href: './raceDetails.html?id=' + RaceId }"></a> (<span data-bind="text: RaceId"></span>)</div>
+                <td colspan="2" class="small" data-bind="foreach: ConstructorStandings">
+                    <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-flag-checkered"></i> <a class="text-muted text-decoration-none" data-bind="text: Name + ' ('+ConstructorId+')', attr: { href: './constructorsDetails.html?id=' + ConstructorId }"></a> (<span data-bind="text: Points"></span>)</div>
+                </td>
+            </tr>
+            <tr class="row">
+                <th class="col-md-2">Drivers</th>
+                <td class="col-md-10" data-bind="text: Drivers"></td>
+            </tr>
+            <tr class="row">
+                <th colspan="2">DriverStandings</th>
+            </tr>
+            <tr>
+                <td colspan="2" class="small" data-bind="foreach: DriverStandings">
+                    <div class="border rounded d-inline-block mr-2 mb-1 p-1"><i class=" fa fa-flag-checkered"></i> <a class="text-muted text-decoration-none" data-bind="text: Name + ' ('+DriverId+')', attr: { href: './driverDetails.html?id=' + DriverId }"></a> (<span data-bind="text: Points"></span>)</div>
                 </td>
             </tr>
         </table>
