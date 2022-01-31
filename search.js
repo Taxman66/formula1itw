@@ -3,43 +3,31 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Seasons/Season?year=');
-    self.displayName = 'Season Details';
+    var pesquisar = document.querySelector("#escrever")
+    var procurar = document.querySelector("#pesquisa")
+    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Search/All?q=');
+    self.displayName = 'Search Results';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
-    self.Year = ko.observable('');
-    self.ImageUrl = ko.observable('');
-    self.Name = ko.observable('');
-    self.Country = ko.observable('');
-    self.Location = ko.observable('');
-    self.Races = ko.observableArray('');
-    self.Url = ko.observable('');
-    self.Alt = ko.observable('');
-    self.Lng = ko.observable('');
-    self.Lat = ko.observable('');
-    self.Date = ko.observable('');
-
+    self.valores = ko.observableArray([]);
+    self.search = ko.observable('');
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getCircuit...');
+        console.log('CALL: getSearch...');
         var composedUri = self.baseUri() + id;
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
-            self.Year(data.Year);
-            self.ImageUrl(data.ImageUrl);
-            self.Name(data.Name);
-            self.Country(data.Country);
-            self.Location(data.Location);
-            self.Races(data.Races);
-            self.Url(data.Url);
-            self.Alt(data.Alt);
-            self.Lng(data.Lng);
-            self.Lat(data.Lat);
-            self.Date(data.Date);
+            self.valores(data);
             hideLoading();
         });
     };
+    pesquisar.addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            procurar.click();
+        }
+    });
     //--- Internal functions
     function ajaxHelper(uri, method, data) {
         self.error(''); // Clear error message
@@ -58,7 +46,7 @@ var vm = function () {
 
     }
     function showLoading() {
-        $('#myModal').modal('show', {
+        $('#myModal').modal('show',{
             backdrop: 'static',
             keyboard: false
         });
@@ -85,7 +73,7 @@ var vm = function () {
     };
     //--- start ....
     showLoading();
-    var pg = getUrlParameter('id');
+    var pg = getUrlParameter('q');
     console.log(pg);
     if (pg == undefined)
         self.activate(1);
@@ -94,10 +82,7 @@ var vm = function () {
     }
 };
 
-
-
 $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());
-    
 });

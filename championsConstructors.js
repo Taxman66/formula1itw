@@ -3,40 +3,19 @@ var vm = function () {
     console.log('ViewModel initiated...');
     //---Variáveis locais
     var self = this;
-    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Seasons/Season?year=');
-    self.displayName = 'Season Details';
+    self.baseUri = ko.observable('http://192.168.160.58/Formula1/api/Statistics/CChampions');
+    self.displayName = 'Champions - Constructors';
     self.error = ko.observable('');
     self.passingMessage = ko.observable('');
     //--- Data Record
-    self.Year = ko.observable('');
-    self.ImageUrl = ko.observable('');
-    self.Name = ko.observable('');
-    self.Country = ko.observable('');
-    self.Location = ko.observable('');
-    self.Races = ko.observableArray('');
-    self.Url = ko.observable('');
-    self.Alt = ko.observable('');
-    self.Lng = ko.observable('');
-    self.Lat = ko.observable('');
-    self.Date = ko.observable('');
-
+    self.valores = ko.observableArray([]);
     //--- Page Events
     self.activate = function (id) {
-        console.log('CALL: getCircuit...');
-        var composedUri = self.baseUri() + id;
+        console.log('CALL: getChampions...');
+        var composedUri = self.baseUri();
         ajaxHelper(composedUri, 'GET').done(function (data) {
             console.log(data);
-            self.Year(data.Year);
-            self.ImageUrl(data.ImageUrl);
-            self.Name(data.Name);
-            self.Country(data.Country);
-            self.Location(data.Location);
-            self.Races(data.Races);
-            self.Url(data.Url);
-            self.Alt(data.Alt);
-            self.Lng(data.Lng);
-            self.Lat(data.Lat);
-            self.Date(data.Date);
+            self.valores(data);
             hideLoading();
         });
     };
@@ -58,7 +37,7 @@ var vm = function () {
 
     }
     function showLoading() {
-        $('#myModal').modal('show', {
+        $('#myModal').modal('show',{
             backdrop: 'static',
             keyboard: false
         });
@@ -94,10 +73,13 @@ var vm = function () {
     }
 };
 
-
-
 $(document).ready(function () {
     console.log("ready!");
     ko.applyBindings(new vm());
-    
 });
+
+setTimeout(function(){
+    //var load_screen = document.getElementById("myModal");
+    //load_screen.remove(load_screen);
+    $("#myModal").modal('hide');
+  },1500)

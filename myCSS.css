@@ -62,3 +62,29 @@ button.cor {
 .input-field {
     padding-left:5px
 }
+
+.procura {
+    background-color: black;
+    border: black;
+    width: 90px;
+}
+
+.procura:hover {
+    background-color: white;
+    border: white;
+    color: black;
+}
+
+.fa-search {
+    padding-right:7px;
+    font-size: 25px;
+    color: black;
+}
+
+.barra {
+    border:solid 1px black;
+}
+
+.go {
+    width: 100px;
+}
